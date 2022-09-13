@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gulimall-coupon
+  cloud:
+    nacos:
+      discovery:    #发现中心
+        server-addr: 127.0.0.1:8848 #配置Nacos地址
+      config:   #配置中心
+        server-addr: 127.0.0.1:8848 #Nacos地址
+        file-extension: yaml #这里我们获取的yaml格式的配置
+        namespace: 6e625420-7372-4db3-a237-9f978ece711f #设置使用的命名空间（默认为public，要写唯一id）
