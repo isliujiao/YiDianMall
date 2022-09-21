@@ -33,16 +33,16 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
 
-    @Value("${coupon.user.name}")
-    private String userName;
-
-    @Value("${coupon.user.age}")
-    private String userAge;
-
-    @RequestMapping("/test")
-    public R test(){
-        return R.ok().put("name",userName).put("age",userAge);
-    }
+//    @Value("${coupon.user.name}")
+//    private String userName;
+//
+//    @Value("${coupon.user.age}")
+//    private String userAge;
+//
+//    @RequestMapping("/test")
+//    public R test(){
+//        return R.ok().put("name",userName).put("age",userAge);
+//    }
 
     @RequestMapping("/member/list")
     public R membercoupons(){

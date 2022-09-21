@@ -19,6 +19,8 @@ spring:
       secret-key: 2v2gEVISYxiZYVfppedvBd7Pn0Ibvh
       oss:
         endpoint: oss-cn-beijing.aliyuncs.com
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

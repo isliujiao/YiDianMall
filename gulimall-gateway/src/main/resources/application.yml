@@ -2,20 +2,27 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: baidu_route
-          uri: https://www.baidu.com
-          predicates:
-            - Query=url,baidu
-        - id: qq_route
-          uri: https://www.qq.com
-          predicates:
-            - Query=url,qq
-
         # gulimall-product商品服务
         - id: product_route
           uri: lb://gulimall-product #设置路由的uri
           predicates:
             - Path=/api/product/**  #设置路由断言
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}  #设置转发路径？
+
+        # gulimall-member 会员系统
+        - id: member_route
+          uri: lb://gulimall-member #设置路由的uri
+          predicates:
+            - Path=/api/member/**  #设置路由断言
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}  #设置转发路径？
+
+        # gulimall-ware 库存系统
+        - id: ware_route
+          uri: lb://gulimall-ware #设置路由的uri
+          predicates:
+            - Path=/api/ware/**  #设置路由断言
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}  #设置转发路径？
 
@@ -27,7 +34,7 @@ spring:
           filters:
             - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}  #设置转发路径？
 
-        # 映射到前端路径（/api/**）----将以上没有匹配到的交给renren-fast进行匹配
+        # 映射前端路径（/api/**）----将以上没有匹配到的交给renren-fast进行匹配
         - id: admin_route   #设置路由的uri
           uri: lb://renren-fast #设置路由的uri
           predicates:

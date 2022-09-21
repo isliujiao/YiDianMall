@@ -37,12 +37,13 @@ public class GuliMallExceptionControllerAdvice {
         bindingResult.getFieldErrors().forEach((fieldError) -> {
             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
         });
-        return R.error(BizCodeEnum.VAILD_EXCEPTION.getCode(), BizCodeEnum.VAILD_EXCEPTION.getMsg()).put("data",errorMap);
+        return R.error(BizCodeEnum.VAILD_EXCEPTION.getCode(), BizCodeEnum.VAILD_EXCEPTION.getMsg()).put("data", errorMap);
     }
 
     //处理任意异常
     @ExceptionHandler(value = Throwable.class)
     public R handleException(Throwable e) {
+        log.error("错误：", e);
         return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
     }
 

@@ -1,0 +1,25 @@
+server:
+  port: 7010
+
+spring:
+  application:
+    name: gulimall-test
+  datasource:
+    username: root
+    password: abc123
+    url: jdbc:mysql://localhost:3306/gulimall_sms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driverClassName: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+       server-addr: 127.0.0.1:8848
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto #设置主键自增
+
+
+

@@ -19,6 +19,7 @@
         <module>renren-generator</module>
         <module>gulimall-common</module>
         <module>gulimall-third-party</module>
+        <module>z-gulimall-test</module>
     </modules>
 
 </project>

@@ -64,7 +64,7 @@ public class OssController {
             String postSignature = ossClient.calculatePostSignature(postPolicy);
 
             respMap = new LinkedHashMap<String, String>();
-            respMap.put("accessId", accessId);
+            respMap.put("accessid", accessId);
             respMap.put("policy", encodedPolicy);
             respMap.put("signature", postSignature);
             respMap.put("dir", dir);
@@ -75,6 +75,8 @@ public class OssController {
         } catch (Exception e) {
             // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
+        }finally {
+            ossClient.shutdown();
         }
         return R.ok().put("data",respMap);
     }
