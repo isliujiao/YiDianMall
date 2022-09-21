@@ -136,7 +136,7 @@ export default {
         data: this.$http.adornData(postData, false)
       }).then(({ data }) => {
         if (data.code == 0) {
-          this.$message({ type: "success", message: "删除成功" });
+          this.$message({ type: "success", message: "删除成功……" });
           this.init(this.attrGroupId);
         } else {
           this.$message({ type: "error", message: data.msg });
@@ -147,13 +147,15 @@ export default {
     relationRemove(attrId) {
       let data = [];
       data.push({ attrId, attrGroupId: this.attrGroupId });
+      console.log("attrId:",attrId);
+      console.log("attrGroupId:",this.attrGroupId);
       this.$http({
         url: this.$http.adornUrl("/product/attrgroup/attr/relation/delete"),
         method: "post",
         data: this.$http.adornData(data, false)
       }).then(({ data }) => {
         if (data.code == 0) {
-          this.$message({ type: "success", message: "删除成功" });
+          this.$message({ type: "success", message: "删除成功！" });
           this.init(this.attrGroupId);
         } else {
           this.$message({ type: "error", message: data.msg });

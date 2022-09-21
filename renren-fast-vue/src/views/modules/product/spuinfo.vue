@@ -31,7 +31,7 @@
             size="small"
             @click="productUp(scope.row.id)"
           >上架</el-button>
-          <el-button type="text" size="small" @click="attrUpdateShow(scope.row)">规格</el-button>
+          <el-button type="text" size="small" @click="attrUpdateShow(scope.row)">·规格·</el-button>
         </template>
       </el-table-column>
     </el-table>

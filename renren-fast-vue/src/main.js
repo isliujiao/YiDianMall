@@ -11,6 +11,9 @@ import httpRequest from '@/utils/httpRequest' // api: https://github.com/axios/a
 import { isAuth } from '@/utils'
 import cloneDeep from 'lodash/cloneDeep'
 
+import PubSub from 'pubsub-js'
+Vue.prototype.PubSub = PubSub
+
 Vue.use(VueCookie)
 Vue.config.productionTip = false
 

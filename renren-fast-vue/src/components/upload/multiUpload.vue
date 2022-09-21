@@ -3,7 +3,7 @@
     <el-upload
       action="http://gulimall-isliujiao.oss-cn-beijing.aliyuncs.com"
       :data="dataObj"
-      list-type="picture-card"
+      :list-type="listType"
       :file-list="fileList"
       :before-upload="beforeUpload"
       :on-remove="handleRemove"
@@ -11,6 +11,7 @@
       :on-preview="handlePreview"
       :limit="maxCount"
       :on-exceed="handleExceed"
+      :show-file-list="showFile"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
@@ -31,7 +32,16 @@ export default {
     maxCount: {
       type: Number,
       default: 30
+    },
+    listType:{
+      type: String,
+      default: "picture-card"
+    },
+    showFile:{
+      type: Boolean,
+      default: true
     }
+
   },
   data() {
     return {
@@ -83,7 +93,7 @@ export default {
             _self.dataObj.policy = response.data.policy;
             _self.dataObj.signature = response.data.signature;
             _self.dataObj.ossaccessKeyId = response.data.accessid;
-            _self.dataObj.key = response.data.dir + "/"+getUUID()+"_${filename}";
+            _self.dataObj.key = response.data.dir +getUUID()+"_${filename}";
             _self.dataObj.dir = response.data.dir;
             _self.dataObj.host = response.data.host;
             resolve(true);
@@ -114,5 +124,3 @@ export default {
 </script>
 <style>
 </style>
-
-
