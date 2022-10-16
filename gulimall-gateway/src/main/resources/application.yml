@@ -42,3 +42,15 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}  #设置转发路径？ - id: admin_route   #设置路由的uri
 
+        # nginx 转发到网关，网关进行配置转发到服务
+        #访问gulimall.com 代理到 虚拟机、虚拟机的nginx接收、代理给 网关、网关转发到服务
+        - id: gulimall_host_route   #设置路由的uri
+          uri: lb://gulimall-product #设置路由的uri
+          predicates:
+            - Host=gulimall.com,item.gulimall.com
+
+        #检索服务，将nginx的gulimall域名转给gulimall-search服务
+        - id: gulimall_search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Host=search.gulimall.com

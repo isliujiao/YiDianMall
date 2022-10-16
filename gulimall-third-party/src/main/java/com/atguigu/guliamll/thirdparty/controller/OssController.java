@@ -22,7 +22,7 @@ import java.util.Map;
  * @create:2022-09-09-15:47
  */
 @RestController
-public class OssController {
+public class  OssController {
 
     @Autowired
     OSS ossClient;
@@ -51,7 +51,7 @@ public class OssController {
 
         Map<String, String> respMap = null;
         try {
-            long expireTime = 90;
+            long expireTime = 300;
             long expireEndTime = System.currentTimeMillis() + expireTime * 1000;
             Date expiration = new Date(expireEndTime);
             PolicyConditions policyConds = new PolicyConditions();

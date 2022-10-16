@@ -27,6 +27,14 @@ public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
 
+    ///product/spuinfo/{spuId}/up
+    //商品上架
+    @PostMapping("/{spuId}/up")
+    public R spuUp(@PathVariable Long spuId){
+       spuInfoService.spuUp(spuId);
+        return R.ok();
+    }
+
     /**
      * sku检索
      */
@@ -34,9 +42,9 @@ public class SpuInfoController {
     //@RequiresPermissions("product:spuinfo:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = spuInfoService.queryPageByCondition(params);
-
         return R.ok().put("page", page);
     }
+
     /**
      * 列表
      */
