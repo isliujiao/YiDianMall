@@ -36,6 +36,8 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         //保存到es
         //1、给es中建立索引。product,建立好映射关系
 
+        System.out.println("----/search/save/product--skuEsModels：" + skuEsModels);
+
         //2、给es中保存这些数据
         //BulkRequest bulkRequest, RequestOptions options
         BulkRequest bulkRequest = new BulkRequest();

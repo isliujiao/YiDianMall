@@ -233,6 +233,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     }
 
     //商品上架
+    @Transactional
     @Override
     public void spuUp(Long spuId) {
         //1、查出当前spuid对应的所有sku信息，品牌名字
@@ -242,7 +243,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // 4、查询当前sku的所有可以被用来检索的规格属性
         /*(1)、查询到所有规格属性*/
         List<ProductAttrValueEntity> baseAttrs = attrValueService.baseAttrListForSpu(spuId);
-              List<Long> attrIds = baseAttrs.stream().map(attr -> {
+        List<Long> attrIds = baseAttrs.stream().map(attr -> {
             return attr.getAttrId();
         }).collect(Collectors.toList());
 
@@ -255,9 +256,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         List<SkuEsModel.Attrs> attrsList = baseAttrs.stream().filter(item -> {
             return idSet.contains(item.getAttrId());
         }).map(item -> {
-            SkuEsModel.Attrs attrs1 = new SkuEsModel.Attrs();
-            BeanUtils.copyProperties(item, attrs1);
-            return attrs1;
+            SkuEsModel.Attrs attrs = new SkuEsModel.Attrs();
+            BeanUtils.copyProperties(item, attrs);
+            return attrs;
         }).collect(Collectors.toList());
 
         //todo 1、发送远程调用，库存系统查询是否有库存
@@ -269,7 +270,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             stockMap = r.getData(typeReference).stream()
                     .collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
         } catch (Exception e) {
-            log.error("库存服务拆线呢异常，原因:", e);
+            log.error("库存服务查询异常，原因:", e);
         }
 
         //2、封装每个sku的信息

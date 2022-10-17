@@ -44,7 +44,7 @@ public class SkuEsModel {
     public static class Attrs{
         private Long attrId;
         private String attrName;
-        private String attrVale;
+        private String attrValue;
     }
 
 }
