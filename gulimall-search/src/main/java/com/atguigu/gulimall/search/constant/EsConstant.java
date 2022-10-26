@@ -10,6 +10,6 @@ public class EsConstant {
     //sku数据
     public static final String PRODUCT_INDEX = "gulimall_product";//sku数据在es中的索引
 
-    public static final Integer PRODUCT_PAGESIZE = 2;//每页显示数
+    public static final Integer PRODUCT_PAGESIZE = 4;//每页显示数
 
 }

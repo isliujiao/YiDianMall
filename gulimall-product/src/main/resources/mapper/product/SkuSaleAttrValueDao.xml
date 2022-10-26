@@ -13,5 +13,33 @@
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
 
+    <!--自定义封装resultMap-->
+    <resultMap id="SkuItemSaleAttrVo" type="com.atguigu.gulimall.product.vo.SkuItemSaleAttrVo">
+        <result column="attr_id" property="attrId"></result>
+        <result column="attr_name" property="attrName"></result>
+        <collection property="attrValues" ofType="com.atguigu.gulimall.product.vo.AttrValueWithSkuIdVo">
+            <result column="attr_value" property="attrValue"></result>
+            <result column="sku_ids" property="skuIds"></result>
+        </collection>
+    </resultMap>
+
+    <!--当前spu对应哪些销售属性-->
+    <select id="getSaleAttrsBySpuId" resultMap="SkuItemSaleAttrVo">
+        SELECT
+            ssav.attr_id attr_id,
+            ssav.attr_name attr_name,
+            ssav.`attr_value`,
+            group_concat(DISTINCT info.`sku_id`) sku_ids
+        FROM
+            pms_sku_info info
+                LEFT JOIN pms_sku_sale_attr_value ssav ON ssav.sku_id = info.sku_id
+        WHERE
+            info.spu_id = #{spuId}
+        GROUP BY
+            ssav.attr_id,
+            ssav.attr_name,
+            ssav.`attr_value`
+    </select>
+
 
 </mapper>

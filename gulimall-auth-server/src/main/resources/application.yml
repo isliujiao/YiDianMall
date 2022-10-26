@@ -1,0 +1,10 @@
+server:
+  port: 20000
+
+spring:
+  application:
+    name: gulimall-auth-server
+  thymeleaf:
+    cache: false
+
+

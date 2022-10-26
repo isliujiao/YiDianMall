@@ -54,3 +54,10 @@ spring:
           uri: lb://gulimall-search
           predicates:
             - Host=search.gulimall.com
+
+        #检索服务，将nginx的gulimall域名转给gulimall-search服务
+        - id: gulimall-auth-server_route
+          uri: lb://gulimall-auth-server
+          predicates:
+            - Host=auth.gulimall.com
+

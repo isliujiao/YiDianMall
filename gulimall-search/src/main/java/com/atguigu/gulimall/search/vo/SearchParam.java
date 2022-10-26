@@ -40,7 +40,7 @@ public class SearchParam {
      * attrs=2_5寸:6寸
      */
     //是否只显示有货 —— 0（无库存）、1（有库存，默认）
-    private Integer hasStock = 1;
+    private Integer hasStock;
     //价格区间查询
     private String skuPrice;
     //按照品牌进行查询，可以多选
@@ -50,5 +50,8 @@ public class SearchParam {
 
     //页码
     private Integer pageNum = 1;
+
+    //原生的所有查询条件（从页面传来）
+    private String _queryString;
 
 }

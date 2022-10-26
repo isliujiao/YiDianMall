@@ -1,13 +1,13 @@
 package com.atguigu.gulimall.product;
 
-import com.baomidou.mybatisplus.extension.api.R;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Var;
 import org.junit.Test;
-import org.springframework.util.StringUtils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author:厚积薄发
@@ -16,6 +16,21 @@ import java.util.stream.Collectors;
 @Slf4j
 public class iTest {
 
+
+    @Test
+    public void t12(){
+
+    }
+
+
+    @Test
+    public void date() throws ParseException {
+        String bir = "Sun Oct 16 00:00:00 CST 2022";
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.ENGLISH);//要转换的时间格式
+        Date parse = sdf.parse(bir);
+
+        System.out.println(parse);
+    }
 
     @Test
     public void tt(){
