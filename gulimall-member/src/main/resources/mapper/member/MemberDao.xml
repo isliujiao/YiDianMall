@@ -25,5 +25,10 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
+    <!--默认会员等级-->
+    <select id="getDefaultLevel" resultType="com.atguigu.gulimall.member.entity.MemberLevelEntity">
+        select * from `ums_member_level` where default_status = 1
+    </select>
+
 
 </mapper>

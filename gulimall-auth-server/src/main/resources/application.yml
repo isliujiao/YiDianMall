@@ -1,10 +1,24 @@
 server:
   port: 20000
+  #SpringSession
+  servlet:
+    session:
+      timeout: 30m
 
 spring:
   application:
     name: gulimall-auth-server
   thymeleaf:
     cache: false
+  redis:
+    host: 192.168.72.128
+    port: 6379
 
+
+#超时时间
+ribbon:
+  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+  ReadTimeout: 6000
+  #指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 6000
 

@@ -19,9 +19,29 @@ public class iTest {
 
     @Test
     public void t12(){
-
+        int i = partitionDisjoint(new int[]{5, 0, 3, 8, 6});
+        System.out.println(i);
     }
 
+    public int partitionDisjoint(int[] nums) {
+        int leftMax = nums[0];//记录左侧最大的数值
+        for(int i = 0;i < nums.length;i++){
+            boolean flag = true;
+            if(nums[i] > leftMax){
+                leftMax = nums[i];
+            }
+            for(int j = i + 1;j < nums.length;j++){
+                if(leftMax > nums[j]){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                return i + 1;
+            }
+        }
+        return 0;
+    }
 
     @Test
     public void date() throws ParseException {

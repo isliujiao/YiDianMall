@@ -28,6 +28,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--SpringSession-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <!--生产配置元数据-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
