@@ -41,5 +41,11 @@
             ssav.`attr_value`
     </select>
 
+    <select id="getSkuSaleAttrValueAsStringList" resultType="java.lang.String">
+        select concat(attr_name,"：",attr_value)
+        from `pms_sku_sale_attr_value`
+        where sku_id=#{skuId}
+    </select>
+
 
 </mapper>

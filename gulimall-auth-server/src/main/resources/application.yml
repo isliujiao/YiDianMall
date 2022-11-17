@@ -3,7 +3,7 @@ server:
   #SpringSession
   servlet:
     session:
-      timeout: 30m
+      timeout: 30000m
 
 spring:
   application:

@@ -28,6 +28,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!--SpringSession-->
         <dependency>
             <groupId>org.springframework.session</groupId>
@@ -71,6 +76,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!--redis的客户端切换为jedis-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>

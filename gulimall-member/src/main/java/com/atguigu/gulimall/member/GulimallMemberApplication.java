@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * 想要远程调用的步骤
@@ -14,6 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *      3.开启远程调用功能：@FeignClient
  *      4.@EnableFeignClients进行扫描feign在当前服务的位置
  */
+@EnableRedisHttpSession
 @EnableFeignClients(basePackages = "com.atguigu.gulimall.member.feign")
 @EnableDiscoveryClient
 @SpringBootApplication

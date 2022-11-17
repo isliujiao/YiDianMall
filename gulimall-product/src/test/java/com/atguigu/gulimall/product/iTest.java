@@ -17,30 +17,26 @@ import java.util.*;
 public class iTest {
 
 
+
     @Test
     public void t12(){
-        int i = partitionDisjoint(new int[]{5, 0, 3, 8, 6});
-        System.out.println(i);
+        System.out.println(generate(9));
     }
 
-    public int partitionDisjoint(int[] nums) {
-        int leftMax = nums[0];//记录左侧最大的数值
-        for(int i = 0;i < nums.length;i++){
-            boolean flag = true;
-            if(nums[i] > leftMax){
-                leftMax = nums[i];
-            }
-            for(int j = i + 1;j < nums.length;j++){
-                if(leftMax > nums[j]){
-                    flag = false;
-                    break;
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i = 0;i < numRows;i++){
+            List<Integer> listInt = new ArrayList<>();
+            for(int j = 0;j <= i;j++){
+                if(j == 0 || i == j){
+                    listInt.add(1);
+                }else{
+                    listInt.add(list.get(i - 1).get(j - 1) + list.get(i - 1).get(j));
                 }
             }
-            if(flag){
-                return i + 1;
-            }
+            list.add(listInt);
         }
-        return 0;
+        return list;
     }
 
     @Test

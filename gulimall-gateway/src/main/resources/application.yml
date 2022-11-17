@@ -10,6 +10,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}  #设置转发路径？
 
+        - id: coupon_route
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
         # gulimall-member 会员系统
         - id: member_route
           uri: lb://gulimall-member #设置路由的uri
@@ -42,22 +49,48 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}  #设置转发路径？ - id: admin_route   #设置路由的uri
 
+#===============👆↑前端映射=================👇↓nginx=============================
+
         # nginx 转发到网关，网关进行配置转发到服务
         #访问gulimall.com 代理到 虚拟机、虚拟机的nginx接收、代理给 网关、网关转发到服务
+        #1.商品服务
         - id: gulimall_host_route   #设置路由的uri
           uri: lb://gulimall-product #设置路由的uri
           predicates:
             - Host=gulimall.com,item.gulimall.com
 
-        #检索服务，将nginx的gulimall域名转给gulimall-search服务
+        #2.检索服务，将nginx的gulimall域名转给gulimall-search服务
         - id: gulimall_search_route
           uri: lb://gulimall-search
           predicates:
             - Host=search.gulimall.com
 
-        #检索服务，将nginx的gulimall域名转给gulimall-search服务
+        #3.认证服务，将nginx的gulimall域名转给gulimall-search服务
         - id: gulimall-auth-server_route
           uri: lb://gulimall-auth-server
           predicates:
             - Host=auth.gulimall.com
 
+        #4.购物车服务
+        - id: gulimall_cart_route
+          uri: lb://gulimall-cart
+          predicates:
+            - Host=cart.gulimall.com
+
+        #5.订单服务
+        - id: gulimall_order_route
+          uri: lb://gulimall-order
+          predicates:
+            - Host=order.gulimall.com
+
+        #6.会员服务
+        - id: gulimall_member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Host=member.gulimall.com
+
+        #7.秒杀服务
+        - id: gulimall_seckill_route
+          uri: lb://gulimall-seckill
+          predicates:
+            - Host=seckill.gulimall.com

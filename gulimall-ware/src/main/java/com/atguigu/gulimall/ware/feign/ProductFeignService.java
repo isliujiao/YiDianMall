@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ProductFeignService {
 
     /**
+     * 查询商品信息
      * 1)、让所有请求过网关：
      *      1、@FeignClient("gulimall-gateway"):给gulimall-gateway所在的机器发请求
      *      2、api/product/skuinfo/info/{skuId}
@@ -23,6 +24,6 @@ public interface ProductFeignService {
      * @return
      */
     @RequestMapping("/product/skuinfo/info/{skuId}")
-    public R info(@PathVariable("skuId") Long skuId);
+    R info(@PathVariable("skuId") Long skuId);
 
 }

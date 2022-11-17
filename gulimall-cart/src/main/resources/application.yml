@@ -1,0 +1,14 @@
+server:
+  port: 30001
+
+spring:
+  application:
+    name: gulimall-cart
+  cloud:
+    nacos:
+      discovery:
+       server-addr: 127.0.0.1:8848
+  #购物车redis，部署线上应与缓存数据分开存储
+  redis:
+    port: 6379
+    host: 192.168.72.128

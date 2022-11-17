@@ -32,4 +32,7 @@ public class SkuItemVo {
 
     //是否有货
     boolean hasStock = true;
+
+    //当前商品的秒杀优惠信息
+    SeckillInfoVo seckillInfo;
 }

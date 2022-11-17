@@ -17,15 +17,20 @@ import lombok.Data;
  * 13: 购物车
  * 14: 物流
  * 15: 用户
+ * 21:库存
+ * 24:秒杀
  *
  */
 public enum BizCodeEnum {
     UNKNOW_EXCEPTION(10000,"系统未知异常"),
     VAILD_EXCEPTION(10001,"参数格式校验失败"),
-    SMS_CODE_EXCEPTION(10002,"验证码频率高"),
+    TOO_MANY_EXCEPTION(10002,"参数格式校验失败"),
+    SMS_CODE_EXCEPTION(10003,"验证码频率高"),
     PRODUCT_UP_EXCEPTION(11000,"商品上架异常"),
     USER_EXIST_EXCEPTION(15001,"用户存在"),
     PHONE_EXIST_EXCEPTION(15002,"手机号存在"),
+    NO_STOCK_EXCEPTION(21000,"商品库存不足"),
+    PUT_STOCK_EXCEPTION(24000,"上架失败，没有最近三天活动商品"),
     LOGINACCT_PASSWORD_EXCEPTION(15003,"账号或密码错误");
 
     private int code;
