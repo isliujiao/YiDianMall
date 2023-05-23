@@ -9,8 +9,8 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848 #配置Nacos地址
     alicloud:
-      access-key: LTAI5tPn1tM4bTbM5oeEtDQW
-      secret-key: 2v2gEVISYxiZYVfppedvBd7Pn0Ibvh
+      access-key: 
+      secret-key: 
       #对象存储
       oss:
         endpoint: oss-cn-beijing.aliyuncs.com
@@ -20,5 +20,5 @@ spring:
         host: https://dfsns.market.alicloudapi.com
         path: /data/send_sms
         template_id: TPL_0000
-        appcode: 1995167581a24a1f814d70a993fd687b
+        appcode: 
 
