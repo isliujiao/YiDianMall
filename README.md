@@ -4,36 +4,34 @@
 一点生活购物
 本系统采用微服务架构设计，在分布式环境下利用Spring Cloud框架，设计独立模块的微服务，拆分为商品服务、订单服务、
 认证服务、购物车服务、检索服务等模块，结合了当前比较流行的互联网B2C电商模式，为消费者提供商品贸易平台。
-
+商城项目是一个电商平台，，提供商品购买、订单管理、支付等功能。用户可以在平台上注册登录、浏览商品、下单、付款等  。结合了当前比较流行的互联网B2C电商模式，为消费者提供商品贸易平台。
 #### 软件架构
-软件架构说明
+- 前端：使用 Vue.js、Element UI、Axios 等技术实现。
 
+- 后端：使用 Spring Boot、MyBatis、Spring Cloud、等技术实现。
 
-#### 安装教程
+- 数据库：使用 MySQL 数据库存储数据。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- 缓存：使用 Redis 实现缓存，提高数据访问效率。
 
-#### 使用说明
+- 消息队列：使用 RabbitMQ 实现异步消息处理，提高系统吞吐量。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+在项目实现过程中，我们采用前后端分离的方式，前端与后端通过 RESTful API 进行数据交互。同时，我们也采用 GitLab 进行版本控制和持续集成，通过自动化测试和部署，保证代码质量和系统稳定性。
 
-#### 参与贡献
+#### 商城项目分布式锁如何实现的？
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+##### 1. 使用Redis实现分布式锁
 
+在Redis中，可以使用**SETNX**命令（set if not exists）实现分布式锁。具体实现步骤如下：
 
-#### 特技
+- 当一个客户端想要获取锁时，它会向Redis中写入一个特定的键值对，其中键是锁的名称，值是客户端的标识符，并设置一个过期时间。
+- 如果Redis中没有这个键值对，客户端就可以获取锁。如果Redis中已经有这个键值对，客户端就不能获取锁。
+- 当客户端完成任务后，它会向Redis发送一个DELETE命令来删除这个键值对，从而释放锁。
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+**2. 使用Redisson实现分布式锁**
+
+Redisson是一个基于Redis实现的Java分布式锁框架，提供了更加便捷的分布式锁实现方式。具体实现步骤如下：
+
+- 使用RedissonClient对象获取**rlock**对象。
+- 调用Rlock对象的lock方法获取锁，如果获取成功，则可以执行业务逻辑；如果获取失败，则等待一定时间后重试。
+- 当业务逻辑执行完成后，调用Rlock对象的**unlock**方法释放锁。
